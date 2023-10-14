@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TP Final CaC Inicial</title>
+</head>
+<body>
+    <h1>Bienvenido al Sistema de Inicio de Sesión</h1>
+    <div>
+        <h2>Menú de Opciones:</h2>
+        <ul>
+            <li><a href="#" id="crear-usuario">Crear Usuario</a></li>
+            <li><a href="#" id="iniciar-sesion">Iniciar Sesión</a></li>
+        </ul>
+    </div>
+
+    <script>
+        document.getElementById('crear-usuario').addEventListener('click', function() {
+            var nombreUsuario = prompt('Ingrese el nombre de usuario:');
+            var contrasena = prompt('Ingrese la contraseña:');
+            
+            fetch('/crear-usuario', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    nombre_usuario: nombreUsuario,
+                    contrasena: contrasena
+                })
+            })
+            .then(response => response.text())
+            .then(message => {
+                alert(message);
+            });
+        });
+
+        document.getElementById('iniciar-sesion').addEventListener('click', function() {
+            var nombreUsuario = prompt('Ingrese el nombre de usuario:');
+            var contrasena = prompt('Ingrese la contraseña:');
+
+            fetch('/iniciar-sesion', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    nombre_usuario: nombreUsuario,
+                    contrasena: contrasena
+                })
+            })
+            .then(response => response.text())
+            .then(message => {
+                alert(message);
+            });
+        });
+    </script>
+</body>
+</html>
